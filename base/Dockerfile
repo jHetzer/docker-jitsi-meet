@@ -9,7 +9,9 @@ COPY rootfs /
 
 RUN \
 	apt-dpkg-wrap apt-get update && \
-	apt-dpkg-wrap apt-get install -y apt-transport-https apt-utils ca-certificates gnupg && \
+	apt-dpkg-wrap apt-get install -y apt-transport-https apt-utils ca-certificates gnupg curl && \
+	apt-key add /tmp/jitsi.key && \
+	rm -f /tmp/jitsi.key && \
 	apt-dpkg-wrap apt-get install -y wget && \
 	wget -qO - https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-amd64.tar.gz | tar xfz - -C / && \
 	wget -qO - https://download.jitsi.org/jitsi-key.gpg.key | apt-key add - && \
@@ -25,7 +27,7 @@ RUN \
 RUN \
 	[ "$JITSI_RELEASE" = "unstable" ] && \
 	apt-dpkg-wrap apt-get update && \
-	apt-dpkg-wrap apt-get install -y jq procps curl vim iputils-ping net-tools && \
+	apt-dpkg-wrap apt-get install -y jq procps vim iputils-ping net-tools && \
 	apt-cleanup || \
 	true
 

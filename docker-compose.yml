@@ -88,6 +88,13 @@ services:
             - XMPP_GUEST_DOMAIN
             - XMPP_MUC_DOMAIN
             - XMPP_RECORDER_DOMAIN
+            - JIBRI_BREWERY_MUC
+            - JIBRI_PENDING_TIMEOUT
+            - JIBRI_XMPP_USER
+            - JIBRI_XMPP_PASSWORD
+            - JIBRI_RECORDER_USER
+            - JIBRI_RECORDER_PASSWORD
+            - TURN_ENABLE
         networks:
             meet.jitsi:
                 aliases:
@@ -156,6 +163,11 @@ services:
             - LOG_LEVEL
             - PUBLIC_URL
             - TZ
+            - TURN_ENABLE
+            - TURN_SECRET
+            - TURN_HOST
+            - TURN_PORT
+            - TURN_TRANSPORT
         networks:
             meet.jitsi:
                 aliases:
